@@ -1,4 +1,6 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login
@@ -27,9 +29,10 @@ def signup(request):
     'error': error_message}
     )
 
+@login_required
 def get_recipe_data(request):
     query = request.GET.get('query')
-    url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={query}&limit=5'
+    url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={query}'
     response = requests.get(url)
     data = response.json()
     result = data.get('meals')
@@ -53,25 +56,31 @@ def get_recipe_data(request):
             new_recipe.save()
     return JsonResponse({'result': result})
 
+def get_recipe_details(request, recipe_name):
+    recipe = Recipe.objects.get(name=recipe_name)
+    return render(request, 'recipes/detail.html', {'recipe': recipe})
+
+@login_required
 def recipes_index(request):
     recipes = Recipe.objects.filter(user = request.user)
     return render(request, 'recipes/index.html', {'recipes': recipes})
 
+@login_required
 def recipes_detail(request, recipe_id):
     recipe = Recipe.objects.get(id=recipe_id)
     return render(request, 'recipes/detail.html', {'recipe': recipe})
 
-class RecipeCreate(CreateView):
+class RecipeCreate(LoginRequiredMixin, CreateView):
     model = Recipe
     fields = ['name', 'region']
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class RecipeUpdate(UpdateView):
+class RecipeUpdate(LoginRequiredMixin, UpdateView):
     model = Recipe
     fields = ['name', 'region']
 
-class RecipeDelete(DeleteView):
+class RecipeDelete(LoginRequiredMixin, DeleteView):
     model = Recipe
     success_url = '/recipes/'

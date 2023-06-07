@@ -10,5 +10,5 @@ urlpatterns = [
     path('recipes/create/', views.RecipeCreate.as_view(), name='recipe_create'), 
     path('accounts/signup/', views.signup, name='signup'),
     path('api/recipes/', views.get_recipe_data, name='get_recipe_data'),
-    # path('get_recipe_data/', views.get_recipe_data, name='get_recipe_data'),
+    path('api/recipes/<str:recipe_name>/', views.get_recipe_details, name='get_recipe_details'),
 ]
