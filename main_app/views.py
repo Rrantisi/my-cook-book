@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.http import JsonResponse
 from .models import Recipe, Instruction
+from .forms import InstructionForm
 import requests
 
 def home(request):
@@ -64,6 +65,7 @@ def get_recipe_data(request):
                 )
     return JsonResponse({'result': result})
 
+@login_required
 def get_recipe_details(request, recipe_name):
     recipe = Recipe.objects.get(name=recipe_name)
     return render(request, 'recipes/detail.html', {'recipe': recipe})
@@ -76,7 +78,19 @@ def recipes_index(request):
 @login_required
 def recipes_detail(request, recipe_id):
     recipe = Recipe.objects.get(id=recipe_id)
-    return render(request, 'recipes/detail.html', {'recipe': recipe})
+    instruction_form = InstructionForm()
+    return render(request, 'recipes/detail.html', 
+    {'recipe': recipe, 'instruction_form': instruction_form})
+
+@login_required
+def add_instruction(request, recipe_id):
+    # creates a form instance from InstructionForm (an object from the form and its able to grab that through the request.POST)
+    form = InstructionForm(request.POST) 
+    if form.is_valid():
+        new_step = form.save(commit=False)
+        new_step.recipe_id = recipe_id
+        new_step.save()
+    return redirect('detail', recipe_id=recipe_id)
 
 class RecipeCreate(LoginRequiredMixin, CreateView):
     model = Recipe
@@ -92,3 +106,4 @@ class RecipeUpdate(LoginRequiredMixin, UpdateView):
 class RecipeDelete(LoginRequiredMixin, DeleteView):
     model = Recipe
     success_url = '/recipes/'
+
