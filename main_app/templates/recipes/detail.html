@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ recipe.name }}</h1>
+<h2>{{ recipe.region }}</h2>
+
+<div>
+    <a href="{% url 'recipe_update' recipe.id %}">Edit</a>
+    <a href="{% url 'recipe_delete' recipe.id %}">Delete</a>
+</div>
+
+{% endblock %}
