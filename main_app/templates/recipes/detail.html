@@ -4,6 +4,27 @@
 <h1>{{ recipe.name }}</h1>
 <h2>{{ recipe.region }}</h2>
 
+{% if recipe.tag.count %}
+    {% for tag in recipe.tag.all %}
+        <h3>{{tag}}</h3>
+        <form action="{% url 'unassoc_tag' recipe.id tag.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Remove Tag">
+        </form>
+    {% endfor %}
+{% else %}
+    <h3>No Tags</h3>
+{% endif %}
+{% if tags.count %}
+    {% for tag in tags %}
+        <h3>{{tag}}</h3>
+        <form action="{% url 'assoc_tag' recipe.id tag.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Add Tag">
+        </form>
+    {% endfor %}
+{% endif %}
+
 <div>
     <a href="{% url 'recipe_update' recipe.id %}">Edit</a>
     <a href="{% url 'recipe_delete' recipe.id %}">Delete</a>

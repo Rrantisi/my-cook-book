@@ -97,10 +97,22 @@ def recipes_index(request):
 @login_required
 def recipes_detail(request, recipe_id):
     recipe = Recipe.objects.get(id=recipe_id)
+    id_list = recipe.tag.all().values_list('id')
+    tags_not_tagged = Tag.objects.exclude(id__in=id_list)
     instruction_form = InstructionForm()
     ingredient_form = IngredientForm()
     return render(request, 'recipes/detail.html', 
-    {'recipe': recipe, 'instruction_form': instruction_form, 'ingredient_form': ingredient_form})
+    {'recipe': recipe, 'instruction_form': instruction_form, 'ingredient_form': ingredient_form, 'tags': tags_not_tagged})
+
+@login_required
+def assoc_tag(request, recipe_id, tag_id):
+    Recipe.objects.get(id=recipe_id).tag.add(tag_id)
+    return redirect('detail', recipe_id = recipe_id)
+
+@login_required 
+def unassoc_tag(request, recipe_id, tag_id):
+    Recipe.objects.get(id=recipe_id).tag.remove(tag_id)
+    return redirect('detail', recipe_id = recipe_id)
 
 @login_required
 def add_instruction(request, recipe_id):
