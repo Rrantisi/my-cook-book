@@ -54,6 +54,9 @@ def get_recipe_data(request):
             )
             new_recipe.save()
             all_steps = r.get('strInstructions').split('\r\n')
+            for index, element in enumerate(all_steps):
+                if not element:
+                    all_steps.pop(index)
             for s in all_steps:
                 Instruction.objects.create(
                     recipe=new_recipe,
