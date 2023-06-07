@@ -1,4 +1,5 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.shortcuts import render, redirect
@@ -6,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.http import JsonResponse
 import requests
-from .models import Recipe, Instruction, Ingredient
+from .models import Recipe, Instruction, Ingredient, Tag
 from .forms import InstructionForm, IngredientForm
 
 def home(request):
@@ -134,4 +135,22 @@ class RecipeUpdate(LoginRequiredMixin, UpdateView):
 class RecipeDelete(LoginRequiredMixin, DeleteView):
     model = Recipe
     success_url = '/recipes/'
+
+class TagList(LoginRequiredMixin, ListView):
+    model = Tag
+
+class TagDetail(LoginRequiredMixin, DetailView):
+    model = Tag
+
+class TagCreate(LoginRequiredMixin, CreateView):
+    model = Tag
+    fields = ['name']
+
+class TagUpdate(LoginRequiredMixin, UpdateView):
+    model = Tag
+    fields = ['name']
+
+class TagDelete(LoginRequiredMixin, DeleteView):
+    model = Tag
+    success_url = '/tags/'
 

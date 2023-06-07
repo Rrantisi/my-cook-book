@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- all data here is accessed by object (that's how class based view require)
+same way as we did with cat when passed in a context dictionary and accessed as cat -->
+<h1>Tag Details</h1>
+
+<div class="card">
+    <div class="card-content">
+      </span> {{ object.name }}</span>
+    </div>
+    <div class="card-action">
+      <a href="{% url 'tag_update' object.id %}">Edit</a>
+      <a href="{% url 'tag_delete' object.id %}">Delete</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %} 

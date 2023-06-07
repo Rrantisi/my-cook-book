@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 data.result.forEach(item => {
                     const resultDiv = document.getElementById('result');                    
                     resultDiv.innerHTML += `

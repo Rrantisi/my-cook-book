@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Tags:</h1>
+
+{% if object_list %}
+    {% for tag in object_list %}
+        <a href="{% url 'tag_details' tag.id %}">
+            <ul>
+                <li>{{tag}}</li>
+            </ul>
+        </a>
+    {% endfor %}
+{% else %}
+    <h3>No Tags Yet</h3>
+{% endif %}
+
+{% endblock %} 
