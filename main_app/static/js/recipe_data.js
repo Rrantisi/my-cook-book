@@ -6,11 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e){
         e.preventDefault();
         query = input.value;
-        fetchData(query)
+        fetchData()
     })
 
     function fetchData() {
-        fetch('/api/recipes/?query=' + query )
+        fetch('/api/recipes/?s=' + query, {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 data.result.forEach(item => {
@@ -20,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="/api/recipes/${item.strMeal}">${item.strMeal}</a><br>
                     `
                 })
-                       
             })
             .catch(error => {
                 console.error(error)

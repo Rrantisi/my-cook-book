@@ -32,3 +32,10 @@ class Ingredient(models.Model):
     def __str__(self):
         return f'{self.amount} of {self.name}'
 
+# class Tag(models.Model):
+#     name = models.CharField(max_length=50)
+
+#     def __str__(self):
+#         return self.name
+
+
