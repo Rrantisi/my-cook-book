@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login
 from django.http import JsonResponse
-from .models import Recipe
+from .models import Recipe, Instruction
 import requests
 
 def home(request):
@@ -36,7 +36,6 @@ def get_recipe_data(request):
     response = requests.get(url)
     data = response.json()
     result = data.get('meals')
-    print(result)
     def is_attribute_present(attribute_value):
         # Query the model to check if any objects have the same attribute value
         matching_objects = Recipe.objects.filter(name=attribute_value)
@@ -54,6 +53,12 @@ def get_recipe_data(request):
                 user = request.user
             )
             new_recipe.save()
+            all_steps = r.get('strInstructions').split('\r\n')
+            for s in all_steps:
+                Instruction.objects.create(
+                    recipe=new_recipe,
+                    step=s
+                )
     return JsonResponse({'result': result})
 
 def get_recipe_details(request, recipe_name):

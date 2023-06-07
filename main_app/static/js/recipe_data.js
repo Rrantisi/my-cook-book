@@ -14,11 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 data.result.forEach(item => {
-                    const resultDiv = document.getElementById('result');
+                    console.log(item.strIngredient1)
+                    const resultDiv = document.getElementById('result');                    
                     resultDiv.innerHTML += `
                     <a href="/api/recipes/${item.strMeal}">${item.strMeal}</a><br>
                     `
-                })                    
+                })
+                       
             })
             .catch(error => {
                 console.error(error)

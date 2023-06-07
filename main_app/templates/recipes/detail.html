@@ -9,4 +9,11 @@
     <a href="{% url 'recipe_delete' recipe.id %}">Delete</a>
 </div>
 
+{% for instruction in recipe.instruction_set.all %}
+<ul>
+  <li>{{instruction.step}}</li>
+</ul>
+{% endfor %}
+
+
 {% endblock %}

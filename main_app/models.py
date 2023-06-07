@@ -12,5 +12,15 @@ class Recipe(models.Model):
 
     def get_absolute_url(self): 
         return reverse('detail', kwargs={'recipe_id': self.id})
+    
+    class Meta:
+        ordering = ['name']
 
+
+class Instruction(models.Model):
+    step = models.CharField(max_length=800)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.step
 
