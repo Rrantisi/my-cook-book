@@ -5,8 +5,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login
 from django.http import JsonResponse
-from .models import Recipe, Instruction
-from .forms import InstructionForm
+from .models import Recipe, Instruction, Ingredient
+from .forms import InstructionForm, IngredientForm
 import requests
 
 def home(request):
@@ -37,6 +37,7 @@ def get_recipe_data(request):
     response = requests.get(url)
     data = response.json()
     result = data.get('meals')
+    ingredients = []
     def is_attribute_present(attribute_value):
         # Query the model to check if any objects have the same attribute value
         matching_objects = Recipe.objects.filter(name=attribute_value)
@@ -63,6 +64,17 @@ def get_recipe_data(request):
                     recipe=new_recipe,
                     step=s
                 )
+            for i in range(1, 21):
+                ingredient = r.get(f'strIngredient{i}')
+                measure = r.get(f'strMeasure{i}')
+                if ingredient:
+                    ingredients.append({'ingredient': ingredient, 'measure': measure})
+            for dict in ingredients:
+                Ingredient.objects.create(
+                    recipe = new_recipe,
+                    name = dict['ingredient'],
+                    amount = dict['measure']
+                )
     return JsonResponse({'result': result})
 
 @login_required
@@ -79,8 +91,9 @@ def recipes_index(request):
 def recipes_detail(request, recipe_id):
     recipe = Recipe.objects.get(id=recipe_id)
     instruction_form = InstructionForm()
+    ingredient_form = IngredientForm()
     return render(request, 'recipes/detail.html', 
-    {'recipe': recipe, 'instruction_form': instruction_form})
+    {'recipe': recipe, 'instruction_form': instruction_form, 'ingredient_form': ingredient_form})
 
 @login_required
 def add_instruction(request, recipe_id):
@@ -90,6 +103,15 @@ def add_instruction(request, recipe_id):
         new_step = form.save(commit=False)
         new_step.recipe_id = recipe_id
         new_step.save()
+    return redirect('detail', recipe_id=recipe_id)
+
+@login_required
+def add_ingredient(request, recipe_id):
+    form = IngredientForm(request.POST) 
+    if form.is_valid():
+        new_ingredient = form.save(commit=False)
+        new_ingredient.recipe_id = recipe_id
+        new_ingredient.save()
     return redirect('detail', recipe_id=recipe_id)
 
 class RecipeCreate(LoginRequiredMixin, CreateView):

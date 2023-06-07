@@ -24,5 +24,11 @@ class Instruction(models.Model):
     def __str__(self):
         return self.step
 
+class Ingredient(models.Model):
+    name = models.CharField(max_length=50)
+    amount = models.CharField(max_length=50)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.amount} of {self.name}'
 

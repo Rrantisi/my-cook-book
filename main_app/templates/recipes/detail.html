@@ -9,6 +9,20 @@
     <a href="{% url 'recipe_delete' recipe.id %}">Delete</a>
 </div>
 
+<h3>Ingredients:</h3>
+{% for ingredient in recipe.ingredient_set.all %}
+<ul>
+  <li>{{ingredient.amount}} of {{ingredient.name}}</li>
+</ul>
+{% endfor %}
+<form action="{% url 'add_ingredient' recipe.id %}" method="POST">
+    {% csrf_token %}
+    {{ ingredient_form.as_p }}
+    <input type="submit" class="btn" value="Add">
+</form>
+
+<hr>
+<h3>Instructions:</h3>
 {% for instruction in recipe.instruction_set.all %}
 <ul>
   <li>{{instruction.step}}</li>
@@ -18,7 +32,7 @@
     {% csrf_token %}
     {{ instruction_form.as_p }}
     <input type="submit" class="btn" value="Add">
-  </form>
+</form>
 
 
 {% endblock %}
