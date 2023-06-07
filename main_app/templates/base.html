@@ -30,6 +30,7 @@
                     <li><a href="" class="nav-link px-2 text-secondary">Add Tags</a></li>
                 </ul>
                 <form method="GET" id="search-form" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    {% csrf_token %}
                     <input 
                     name="query" 
                     type="search" 

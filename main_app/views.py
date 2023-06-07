@@ -4,11 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth import login
-# from django.http import JsonResponse
+from django.http import JsonResponse
+import requests
 from .models import Recipe, Instruction, Ingredient
 from .forms import InstructionForm, IngredientForm
-import requests
-from django.http import HttpResponseBadRequest, JsonResponse
 
 def home(request):
   return render(request, 'home.html')
@@ -41,17 +40,15 @@ def get_recipe_data(request):
             response = requests.get(url)
             data = response.json()
             result = data.get('meals')
-            ingredients = []
-            def is_present(attribute_value):
-                # Query the model to check if any objects have the same attribute value
-                matching_objects = Recipe.objects.filter(name=attribute_value)
-                # If there are any matching objects, attribute_value is already present
+            #--- Check to see if recipe is already added to db by comparing recipe name ---#
+            def is_present(recipe_name):
+                matching_objects = Recipe.objects.filter(name=recipe_name)
                 if matching_objects.exists():
                     return True
                 else:
                     return False
-
             for r in result:
+                #--- if recipe isn't present yet, add it to db ---#
                 if not (is_present(r.get('strMeal'))) :
                     new_recipe = Recipe(
                         name = r.get('strMeal'),
@@ -59,15 +56,20 @@ def get_recipe_data(request):
                         user = request.user
                     )
                     new_recipe.save()
+                #--- fetch recipe instructions and use split method to turn it into an array of steps ---#
                     all_steps = r.get('strInstructions').split('\r\n')
+                #--- if after splitting there are empty elements, remove them ---#
                     for index, element in enumerate(all_steps):
                         if not element:
                             all_steps.pop(index)
+                #--- use the final version of all_steps to create a new object instance of instruction and assign it to same recipe ---#
                     for s in all_steps:
                         Instruction.objects.create(
                             recipe=new_recipe,
                             step=s
                         )
+                #--- iterate through the ingredient and measure and add them all to a list of dictionaries ---#
+                    ingredients = []
                     for i in range(1, 21):
                         ingredient = r.get(f'strIngredient{i}')
                         measure = r.get(f'strMeasure{i}')

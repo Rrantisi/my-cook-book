@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 data.result.forEach(item => {
-                    console.log(item.strIngredient1)
                     const resultDiv = document.getElementById('result');                    
                     resultDiv.innerHTML += `
                     <a href="/api/recipes/${item.strMeal}">${item.strMeal}</a><br>
