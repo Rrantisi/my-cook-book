@@ -13,8 +13,13 @@ from .forms import InstructionForm, IngredientForm
 def home(request):
   return render(request, 'home.html')
 
+@login_required
 def search(request):
   return render(request, 'search.html')
+
+@login_required
+def find(request):
+  return render(request, 'find.html')
 
 def signup(request):
     error_message = ''
@@ -96,6 +101,16 @@ def get_recipe_details(request, recipe_name):
 def recipes_index(request):
     recipes = Recipe.objects.filter(user = request.user)
     return render(request, 'recipes/index.html', {'recipes': recipes})
+
+@login_required
+def find_matching_recipes(request):
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    if is_ajax:
+        if request.method == 'GET':
+            query = request.GET.get('query')
+            print(query)
+            recipes_found = Recipe.objects.filter(name__icontains=query)[:5]
+    return JsonResponse(list(recipes_found.values()), safe=False)
 
 @login_required
 def recipes_detail(request, recipe_id):
