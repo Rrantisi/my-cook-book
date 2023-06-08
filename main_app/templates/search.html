@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card-content m-5">
+    <div class="card-header m-3 p-3">
+        <h1>Find New Recipes:</h1>
+    </div>
+    <form method="GET" id="search-form">
+        {% csrf_token %}
+        <input 
+        name="query" 
+        type="search" 
+        id="search-input"
+        class="form-control form-control-lg text-white shadow-none border-0" 
+        style="background-color: #212121d8;"
+        placeholder="Search Recipes..." 
+        aria-label="Search"
+        >
+    </form>
+    <div class="m-3">
+        <div id="result"></div>
+    </div>
+</div>
+
+
+{% endblock%}
