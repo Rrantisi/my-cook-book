@@ -4,7 +4,19 @@ body {
     flex-direction: column;
   }
   
-  main {
+main {
     flex: 1 0 auto;
+    flex-grow: 1;
+    min-height: 80vh;
   }
-  
+
+#search-input::placeholder {
+  color: #ffffff91;
+}
+
+#result > a {
+  color: white;
+  text-decoration: none;
+  font-size: 3.5vmin;
+}
+

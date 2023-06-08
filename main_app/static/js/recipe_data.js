@@ -21,7 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 data.result.forEach(item => {
                     const resultDiv = document.getElementById('result');                    
                     resultDiv.innerHTML += `
-                    <a href="/api/recipes/${item.strMeal}">${item.strMeal}</a><br>
+                    <a href="/api/recipes/${item.strMeal}">
+                        <h3>${item.strMeal}</h3>
+                    </a><br>
                     `
                 })
             })

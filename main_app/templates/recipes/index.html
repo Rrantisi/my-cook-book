@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
 
-<h1>My Recipes</h1>
+<section class="text-center">
+    <div class="container" >
+        &nbsp;
+        <h1 class="text-white">All Recipes</h1>
+        <hr>
+    </div>
+</section>
 {% for recipe in recipes %}
-    <a href="{% url 'detail' recipe.id %}">
-        <h2>{{ recipe.name }}</h2>
+    <a class="text-decoration-none text-white" href="{% url 'detail' recipe.id %}">
+        <div class="card-content">
+            <h2>{{ recipe.name }}</h2>
+        </div>
     </a>
 {% endfor %}
 
