@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="mt-4">
 {% if object %}
     <h1>Edit Tag</h1>
 {% else %}
     <h1>Add Tag</h1>
 {% endif %}
-
+<hr>
 <form method="post">
     {% csrf_token %}
-    <table>
+    <table class="mt-4 mb-2" style="font-size: 3vmin">
         {{ form.as_table }}
     </table>
-    <input type="submit" value="{% if object %} Update Tag {% else %} Add Tag {% endif%}">
+    <input class="btn btn-warning btn-lg m-2 mt-3 text-black" type="submit" value="{% if object %} Update Tag {% else %} Add Tag {% endif%}">
 </form>
+
+</div>
 
 {% endblock %}

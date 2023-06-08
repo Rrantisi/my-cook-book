@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-    <div class="container border-0 col-md mt-2" style="background-color: #212121d8;">
+    <div class="container border-0 col-md mt-3 pt-4" style="background-color: #212121d8;">
         <div class="card-header bg-transparent text-white text-center">
             <h2>{{ recipe.name }}</h2><br>{{recipe.region}}
         </div>
@@ -17,7 +17,7 @@
                             <h4>{{tag}}</h4>
                             <form action="{% url 'unassoc_tag' recipe.id tag.id %}" method="post">
                                 {% csrf_token %}
-                                <input class="btn btn-outline-secondary text-light pt-1 pb-1" type="submit" value="X">
+                                <input class="btn btn-outline-dark text-secondary pt-0 pb-0" type="submit" value="X">
                             </form>    
                         {% endfor %}
                     {% else %}
@@ -32,7 +32,7 @@
                             <h5>{{tag}}</h5>
                             <form action="{% url 'assoc_tag' recipe.id tag.id %}" method="post">
                                 {% csrf_token %}
-                                <input class="btn btn-outline-secondary text-light pt-0 pb-0" type="submit" value="+">
+                                <input class="btn btn-outline-dark text-light pt-0 pb-0" type="submit" value="+">
                             </form>
                             </div>
                         {% endfor %}
@@ -41,91 +41,41 @@
                 <hr>
                 <div class="row">
                     <div class="card col-md-6 text-white" style="background-color: #212121d8;">
-                        <div class="card-header bg-transparent text-white text-center">Ingredients:</div>
+                        <div class="card-header bg-transparent text-white text-center p-3">
+                            <h3>Ingredients</h3>
+                        </div>
                         {% for ingredient in recipe.ingredient_set.all %}
-                        <ul>
-                        <li>{{ingredient.amount}} {{ingredient.name}}</li>
+                        <ul class=" m-3 p-2" style="list-style: none; font-size: 2vmin;">
+                            <li>{{ingredient.amount.capitalize}} - {{ingredient.name.capitalize}}</li>
                         </ul>
                         {% endfor %}
-                        <form action="{% url 'add_ingredient' recipe.id %}" method="POST">
+                        <form action="{% url 'add_ingredient' recipe.id %}" method="POST" class="m-4">
                             {% csrf_token %}
-                            {{ ingredient_form.as_p }}
-                            <input type="submit" class="btn" value="Add">
+                            <table>
+                                {{ ingredient_form.as_table }}
+                            </table>
+                            <input type="submit" class="btn btn-warning m-2 mt-3 text-dark" value="ADD">
                         </form>
                     </div>
                     <div class="card col-md-6 text-white" style="background-color: #212121d8;">
-                        <div class="card-header bg-transparent text-white text-center">Instructions:</div>
+                        <div class="card-header bg-transparent text-white text-center p-3">
+                            <h3>Instructions</h3>
+                        </div>
                         {% for instruction in recipe.instruction_set.all %}
-                        <ul>
-                        <li>{{instruction.step}}</li>
+                        <ul class=" m-3 p-2" style="list-style: none; font-size: 2vmin;">
+                            <li>{{instruction.step.capitalize}}</li>
                         </ul>
                         {% endfor %}
-                        <form action="{% url 'add_instruction' recipe.id %}" method="POST">
+                        <form action="{% url 'add_instruction' recipe.id %}" method="POST" class="m-1">
                             {% csrf_token %}
-                            {{ instruction_form.as_p }}
-                            <input type="submit" class="btn" value="Add">
+                            {{ instruction_form.as_p}}
+                            <input type="submit" class="btn btn-warning m-2 mb-5 text-dark" value="ADD">
                         </form>     
                     </div>
-    
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-{% comment %} <h1 class="text-center">{{ recipe.name }}</h1>
-<hr>
-<h2 class="text-center">{{ recipe.region }}</h2>
-<div>
-    <a href="{% url 'recipe_update' recipe.id %}">Edit</a>
-    <a href="{% url 'recipe_delete' recipe.id %}">Delete</a>
-</div>
-
-{% if recipe.tag.count %}
-    {% for tag in recipe.tag.all %}
-        <h3>{{tag}}</h3>
-        <form action="{% url 'unassoc_tag' recipe.id tag.id %}" method="post">
-            {% csrf_token %}
-            <input type="submit" value="Remove Tag">
-        </form>
-    {% endfor %}
-{% else %}
-    <h3>No Tags</h3>
-{% endif %}
-{% if tags.count %}
-    {% for tag in tags %}
-        <h3>{{tag}}</h3>
-        <form action="{% url 'assoc_tag' recipe.id tag.id %}" method="post">
-            {% csrf_token %}
-            <input type="submit" value="Add Tag">
-        </form>
-    {% endfor %}
-{% endif %}
-
-<h3>Ingredients:</h3>
-{% for ingredient in recipe.ingredient_set.all %}
-<ul>
-  <li>{{ingredient.amount}} {{ingredient.name}}</li>
-</ul>
-{% endfor %}
-<form action="{% url 'add_ingredient' recipe.id %}" method="POST">
-    {% csrf_token %}
-    {{ ingredient_form.as_p }}
-    <input type="submit" class="btn" value="Add">
-</form>
-
-<hr>
-<h3>Instructions:</h3>
-{% for instruction in recipe.instruction_set.all %}
-<ul>
-  <li>{{instruction.step}}</li>
-</ul>
-{% endfor %}
-<form action="{% url 'add_instruction' recipe.id %}" method="POST">
-    {% csrf_token %}
-    {{ instruction_form.as_p }}
-    <input type="submit" class="btn" value="Add">
-</form> {% endcomment %}
-
 
 {% endblock %}

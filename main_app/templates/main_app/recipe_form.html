@@ -2,18 +2,26 @@
 
 {% block content %}
 
-{% if object %}
-    <h1>Edit Recipe</h1> <!-- here we would have an object value -->
-{% else %}
-    <h1>Add Recipe</h1> <!--here the value of the Object would be None-->
-{% endif %}
+<div class="mt-4">
+    {% if object %}
+        <h1>Edit Recipe</h1> 
+    {% else %}
+        <h1>Add Recipe</h1> 
+    {% endif %}
+    <hr>
+    <form method="POST">
+        {% csrf_token %} 
+        <table style="font-size: 3vmin"> 
+            {{ form.as_table }}
+        </table>
+        <input 
+        class="btn btn-warning btn-lg m-2 mt-5 text-black" 
+        type="submit" 
+        value="{% if object %}Update Recipe {% else %} Add Recipe {% endif %}"
+        >
+    </form>    
 
-<form action="" method="POST">
-    {% csrf_token %} 
-    <table> 
-        {{ form.as_table }}
-    </table>
-    <input class="btn blue" type="submit" value="{% if object %}Update Recipe {% else %} Add Recipe {% endif %}">
-</form>
+</div>
+
 
 {% endblock %}
