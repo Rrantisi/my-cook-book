@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block content %} 
 
+<div class="mt-4">
 <h1>Login</h1>
-
+<hr>
 <form method="POST">
     {% csrf_token %} 
-    {{ form.as_p }}
-    <input class="btn blue" type="submit" value="Login">
+    <table class="mt-4 mb-2" style="font-size: 2.4vmin">
+        {{ form.as_table }}
+    </table>
+    <input class="btn btn-warning btn-lg m-2 mt-2 text-black" type="submit" value="Login">
 </form>
-
+</div>
 {% endblock %}
