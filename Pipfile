@@ -8,6 +8,8 @@ django-heroku = "*"
 gunicorn = "*"
 requests = "*"
 environ = "*"
+boto3 = "*"
+uuid = "*"
 
 [dev-packages]
 
