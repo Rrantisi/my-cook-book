@@ -6,7 +6,7 @@
         <div class="card-header bg-transparent text-white text-center">
             <h2>{{ recipe.name }}</h2><br>{{recipe.region}}<br>
             {% for photo in recipe.photo_set.all %}
-                <img src="{{photo.url}}" height="500vmin;" alt="photo">
+                <img src="{{photo.url}}" class="img-fluid" alt="photo">
             {% endfor %}
         </div>
             <div class="card-body text-white">
