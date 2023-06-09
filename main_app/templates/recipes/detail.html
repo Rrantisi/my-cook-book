@@ -8,12 +8,14 @@
             {% for photo in recipe.photo_set.all %}
                 <img src="{{photo.url}}" class="img-fluid" alt="photo">
             {% endfor %}
+            &nbsp;
         </div>
             <div class="card-body text-white">
                 <div class="d-flex justify-content-end gap-2">
                     <a class="btn btn-outline-secondary text-light" href="{% url 'recipe_update' recipe.id %}">Edit</a>
                     <a class="btn btn-outline-secondary text-light" href="{% url 'recipe_delete' recipe.id %}">Delete</a>
                 </div>
+                &nbsp;
                 <div class="d-flex justify-content-center gap-2">
                     {% if recipe.tag.count %}
                         {% for tag in recipe.tag.all %}    
