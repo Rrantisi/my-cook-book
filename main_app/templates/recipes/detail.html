@@ -14,7 +14,7 @@
                 <div class="d-flex justify-content-center gap-2">
                     {% if recipe.tag.count %}
                         {% for tag in recipe.tag.all %}    
-                            <h4>{{tag}}</h4>
+                            <h4>{{tag.name.capitalize}}</h4>
                             <form action="{% url 'unassoc_tag' recipe.id tag.id %}" method="post">
                                 {% csrf_token %}
                                 <input class="btn btn-outline-dark text-secondary pt-0 pb-0" type="submit" value="X">
@@ -29,7 +29,7 @@
                     {% if tags.count %}
                         {% for tag in tags %}
                             <div class="d-flex gap-2">
-                            <h5>{{tag}}</h5>
+                            <h5>{{tag.name.capitalize}}</h5>
                             <form action="{% url 'assoc_tag' recipe.id tag.id %}" method="post">
                                 {% csrf_token %}
                                 <input class="btn btn-outline-dark text-light pt-0 pb-0" type="submit" value="+">
