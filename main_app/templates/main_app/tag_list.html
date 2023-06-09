@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<div class="mt-4">
+<div class="card-content m-0">
+{% comment %} <div class="mt-4"> {% endcomment %}
 <h1>Tags:</h1>
 <hr>
 {% if object_list %}
@@ -18,5 +19,6 @@
 {% else %}
     <h3>No Tags Yet</h3>
 {% endif %}
+{% comment %} </div> {% endcomment %}
 </div>
 {% endblock %} 
