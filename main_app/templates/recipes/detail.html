@@ -6,9 +6,19 @@
         <div class="card-header bg-transparent text-white text-center">
             <h2>{{ recipe.name }}</h2><br>{{recipe.region}}<br>
             {% for photo in recipe.photo_set.all %}
-                <img src="{{photo.url}}" class="img-fluid" alt="photo">
+            &nbsp;
+                <img src="{{photo.url}}" class="img-fluid" style="max-height: 70vmin" alt="photo">
+            {% empty %}
+            &nbsp;
+                <div class="card-header">No Photos Uploaded</div>
             {% endfor %}
             &nbsp;
+            <form action="{% url 'add_photo' recipe.id %}" enctype="multipart/form-data" method="POST" class="d-flex justify-content-center align-items-center text-align-center">
+                {% csrf_token %}
+                <input type="file" name="photo-file">
+                <br><br>
+                <button type="submit" class="btn btn-outline-secondary text-light">Upload Photo</button>
+            </form>
         </div>
             <div class="card-body text-white">
                 <div class="d-flex justify-content-end gap-2">

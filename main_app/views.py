@@ -9,6 +9,9 @@ from django.http import JsonResponse
 import requests
 from .models import Recipe, Instruction, Ingredient, Tag, Photo
 from .forms import InstructionForm, IngredientForm
+import uuid
+import boto3
+import os
 
 def home(request):
   return render(request, 'home.html')
@@ -154,6 +157,28 @@ def add_ingredient(request, recipe_id):
         new_ingredient.recipe_id = recipe_id
         new_ingredient.save()
     return redirect('detail', recipe_id=recipe_id)
+
+@login_required
+def add_photo(request, recipe_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            # build the full url string
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            Photo.objects.create(url=url, recipe_id=recipe_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('detail', recipe_id=recipe_id)
+
 
 class RecipeCreate(LoginRequiredMixin, CreateView):
     model = Recipe
