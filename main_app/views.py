@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.http import JsonResponse
 import requests
-from .models import Recipe, Instruction, Ingredient, Tag
+from .models import Recipe, Instruction, Ingredient, Tag, Photo
 from .forms import InstructionForm, IngredientForm
 
 def home(request):
@@ -90,6 +90,11 @@ def get_recipe_data(request):
                             name = dict['ingredient'],
                             amount = dict['measure']
                         )
+                    Photo.objects.create(
+                        url = r.get('strMealThumb'),
+                        recipe = new_recipe
+                    )
+
             return JsonResponse({'result': result})
 
 @login_required
@@ -182,4 +187,5 @@ class TagUpdate(LoginRequiredMixin, UpdateView):
 class TagDelete(LoginRequiredMixin, DeleteView):
     model = Tag
     success_url = '/tags/'
+
 
