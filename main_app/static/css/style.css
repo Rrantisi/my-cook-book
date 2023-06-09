@@ -16,10 +16,9 @@ main {
 
 #user-search::placeholder {
   color: #ffffff91;
-
 }
 
-#result > a {
+#result > a, #found-recipes > a {
   color: white;
   text-decoration: none;
   font-size: 3.5vmin;
