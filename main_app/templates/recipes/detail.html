@@ -40,25 +40,29 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="card col-md-6 text-white" style="background-color: #212121d8;">
-                        <div class="card-header bg-transparent text-white text-center p-3">
+                    <div class="card col-md-6 text-white" style="background-color: #21212180;">
+                        <div class="card-header bg-tranparent text-white text-center p-3">
                             <h3>Ingredients</h3>
                         </div>
-                        {% for ingredient in recipe.ingredient_set.all %}
-                        <ul class=" m-3 p-2" style="list-style: none; font-size: 2vmin;">
-                            <li>{{ingredient.amount.capitalize}} - {{ingredient.name.capitalize}}</li>
-                        </ul>
-                        {% endfor %}
+                        <div class="card-content bg-tranparent">
+                            {% for ingredient in recipe.ingredient_set.all %}
+                            <ul class=" m-3 p-2" style="list-style: none; font-size: 2vmin;">
+                                <li><h6>{{ingredient.amount.capitalize}} - {{ingredient.name.capitalize}}</h6></li>
+                            </ul>
+                            {% endfor %}    
+                        </div>
                     </div>
-                    <div class="card col-md-6 text-white" style="background-color: #212121d8;">
+                    <div class="card col-md-6 text-white" style="background-color: #21212180;">
                         <div class="card-header bg-transparent text-white text-center p-3">
                             <h3>Instructions</h3>
                         </div>
-                        {% for instruction in recipe.instruction_set.all %}
-                        <ul class=" m-3 p-2" style="list-style: none; font-size: 2vmin;">
-                            <li>{{instruction.step.capitalize}}</li>
-                        </ul>
-                        {% endfor %}
+                        <div class="card-content bg-tranparent">
+                            {% for instruction in recipe.instruction_set.all %}
+                            <ul class=" m-3 p-2" style="list-style: none; font-size: 2vmin;">
+                                <li><h6>{{instruction.step.capitalize}}</h6></li>
+                            </ul>
+                            {% endfor %}    
+                        </div>
                     </div>
                 </div>
                 <hr>
