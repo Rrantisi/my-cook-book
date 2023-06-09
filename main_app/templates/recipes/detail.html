@@ -6,20 +6,23 @@
         <div class="bg-transparent text-white">
             <div class="card-header bg-transparent text-white text-center">
                 <h2>{{ recipe.name }}</h2><br>{{recipe.region}}<br>
+                <br>
                 {% for photo in recipe.photo_set.all %}
-                &nbsp;
-                    <img src="{{photo.url}}" class="img-fluid" style="max-height: 70vmin" alt="photo">
+                    <img src="{{photo.url}}" class="img-fluid" style="max-height: 60vmin" alt="photo">
                 {% empty %}
                 &nbsp;
                     <div class="card-header">No Photos Uploaded</div>
                 {% endfor %}
+                <br>
                 &nbsp;
-                <form action="{% url 'add_photo' recipe.id %}" enctype="multipart/form-data" method="POST" class="d-flex justify-content-center align-items-center text-align-center">
-                    {% csrf_token %}
-                    <input type="file" name="photo-file">
-                    <br><br>
-                    <button type="submit" class="btn btn-outline-secondary text-light">Upload Photo</button>
-                </form>
+                <div>
+                    <form action="{% url 'add_photo' recipe.id %}" enctype="multipart/form-data" method="POST" class="d-flex justify-content-center align-items-center text-align-center">
+                        {% csrf_token %}
+                        <input type="file" name="photo-file">
+                        <br><br>
+                        <button type="submit" class="btn btn-outline-secondary text-light">Upload Photo</button>
+                    </form><br>  
+                </div>
             </div>
             <div class="card-body text-white">
                 <div class="d-flex justify-content-end gap-2">
@@ -27,7 +30,7 @@
                     <a class="btn btn-outline-secondary text-light" href="{% url 'recipe_delete' recipe.id %}">Delete</a>
                 </div>
                 &nbsp;
-                <div class="d-flex justify-content-center gap-2">
+                <div class="d-flex justify-content-center">
                     {% if recipe.tag.count %}
                         {% for tag in recipe.tag.all %}    
                             <h4>{{tag.name.capitalize}}</h4>
@@ -93,11 +96,11 @@
                             <input type="submit" class="btn btn-warning m-2 mt-3 text-dark" value="ADD">
                         </form>   
                     </div>
-                    <div class="card col-md-6 text-white bg-transparent p-3" style="background-color: #212121d8;">
+                    <div class="card col-md-6 text-white bg-transparent p-1" style="background-color: #212121d8;">
                         <h3 class="p-2">Add Instructions:</h3>
-                        <form action="{% url 'add_instruction' recipe.id %}" method="POST" class="m-1">
+                        <form action="{% url 'add_instruction' recipe.id %}" method="POST" class="m-0">
                             {% csrf_token %}
-                            {{ instruction_form.as_p}}
+                            {{ instruction_form.as_table}}
                             <input type="submit" class="btn btn-warning m-2 mb-5 text-dark" value="ADD">
                         </form>     
                     </div>
