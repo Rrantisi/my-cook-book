@@ -127,3 +127,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 FAVICON_PATH = '/path/to/your/favicon.ico'
+
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
