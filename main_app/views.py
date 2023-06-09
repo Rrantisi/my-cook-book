@@ -50,15 +50,15 @@ def get_recipe_data(request):
             data = response.json()
             result = data.get('meals')
             #--- Check to see if recipe is already added to db by comparing recipe name ---#
-            def is_present(recipe_name):
-                matching_objects = Recipe.objects.filter(name=recipe_name)
+            def is_present(recipe_name, user_id):
+                matching_objects = Recipe.objects.filter(name=recipe_name, user_id=user_id)
                 if matching_objects.exists():
                     return True
                 else:
                     return False
             for r in result:
                 #--- if recipe isn't present yet, add it to db ---#
-                if not (is_present(r.get('strMeal'))) :
+                if not (is_present(r.get('strMeal'), request.user)) :
                     new_recipe = Recipe(
                         name = r.get('strMeal'),
                         region = r.get('strArea'),
@@ -94,7 +94,7 @@ def get_recipe_data(request):
 
 @login_required
 def get_recipe_details(request, recipe_name):
-    recipe = Recipe.objects.get(name=recipe_name)
+    recipe = Recipe.objects.get(name=recipe_name, user = request.user)
     return render(request, 'recipes/detail.html', {'recipe': recipe})
 
 @login_required
@@ -108,8 +108,7 @@ def find_matching_recipes(request):
     if is_ajax:
         if request.method == 'GET':
             query = request.GET.get('query')
-            print(query)
-            recipes_found = Recipe.objects.filter(name__icontains=query)[:5]
+            recipes_found = Recipe.objects.filter(name__icontains=query, user = request.user)[:5]
     return JsonResponse(list(recipes_found.values()), safe=False)
 
 @login_required
