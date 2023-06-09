@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchForm.addEventListener('submit', function(e){
         e.preventDefault();
         query = userInput.value;
-        fetchData()
+        fetchData();
     })
 
     function fetchData() {
@@ -19,17 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 data.forEach(item => {
-                    console.log(item.name)
                     const foundRecipes = document.getElementById('found-recipes');                    
                     foundRecipes.innerHTML += `
                     <a href="/api/recipes/${item.name}">
                         <h3>${item.name}</h3>
                     </a><br>
                     `
-
-                })
-                
-                })
+                })    
+            })
             .catch(error => {
                 console.error(error)
             });
