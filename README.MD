@@ -59,9 +59,7 @@ Welcome to MyCookBook, the ultimate recipe management app that helps you organiz
 
 ![MyCookBook](main_app/static/images/9.png)
 
-![Image by KamranAydinov from Freepik](main_app/static/images/bg.jpg)
-
-Image by [KamranAydinov](https://www.freepik.com/kamranaydinov) from [Freepik](https://www.freepik.com/)
+Background Image by [KamranAydinov](https://www.freepik.com/kamranaydinov) from [Freepik](https://www.freepik.com/)
 
 ## Built With
 
