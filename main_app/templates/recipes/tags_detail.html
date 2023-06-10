@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card-content m-5">
+<h1>Tags:</h1>
+<hr>
+    <div class="card bg-transparent p-1 m-3 border-secondary border-1">
+        <a class="text-white text-decoration-none p-1" href="{% url 'tag_details' tag.id %}">
+            <ul style="list-style: none; font-size: 3vmin;">
+                <li>{{tag.name.capitalize}}</li>
+            </ul>
+        </a>
+    </div>
+    <div class="d-flex justify-content-end gap-2">
+        <a class="btn btn-outline-secondary text-light" href="{% url 'tag_update' tag.id %}">Edit</a>
+        <a class="btn btn-outline-secondary text-light" href="{% url 'tag_delete' tag.id %}">Delete</a>
+    </div>        
+    <h3 class="m-5 text-warning">Available Recipes: </h3>
+    {% if recipes %}
+        {% for recipe in recipes %}
+            <h3><a class="text-decoration-none text-white p-5" href="{% url 'detail' recipe.id %}">{{recipe.name}}</a></h3><br>
+        {% endfor %}
+    {% else %}
+        <h3 class="text-decoration-none text-white m-5">You haven't added any recipes to this tag yet!</h3>
+    {% endif %}
+</div>
+
+{% endblock %} 
