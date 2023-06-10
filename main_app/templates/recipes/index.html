@@ -9,12 +9,18 @@
         <hr>
     </div>
 </section>
-{% for recipe in recipes %}
-    <a class="text-decoration-none text-white p-1" href="{% url 'detail' recipe.id %}">
-        <div class="card-content">
-            <h2>{{ recipe.name }}</h2>
-        </div>
-    </a>
-{% endfor %}
+{% if recipes %}
+    {% for recipe in recipes %}
+        <a class="text-decoration-none text-white p-1" href="{% url 'detail' recipe.id %}">
+            <div class="card-content">
+                <h2 style="text-transform: capitalize;">{{ recipe.name }}</h2>
+            </div>
+        </a>
+    {% endfor %}
+{% else %}
+    <h2 class="p-2" style="text-transform: capitalize">no recipes yet.</h2>
+    <h4 class="p-2" style="text-transform: capitalize">Use the 'Find Recipe' tab to search new recipes</h4>
+    <h4 class="p-2" style="text-transform: capitalize">or Add your own recipes using 'Add Recipe'</h4>
+{% endif %}
 
 {% endblock %}

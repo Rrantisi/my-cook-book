@@ -5,7 +5,7 @@
     <div class="container border-0 mb-3 mt-4 pt-3 pb-4" style="background-color: #212121d8;">
         <div class="bg-transparent text-white">
             <div class="card-header bg-transparent text-white text-center">
-                <h2>{{ recipe.name }}</h2><br>{{recipe.region}}<br>
+                <h2 style="text-transform: capitalize;">{{ recipe.name }}</h2><br>{{recipe.region.capitalize}}<br>
                 <br>
                 {% for photo in recipe.photo_set.all %}
                     <img src="{{photo.url}}" class="img-fluid" style="max-height: 60vmin" alt="photo">
