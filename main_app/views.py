@@ -32,7 +32,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('recipes/') 
+            return redirect('/') 
         else:
             error_message = 'Invalid signup - try again'
     # GET request
@@ -182,8 +182,8 @@ def add_photo(request, recipe_id):
 @login_required
 def tag_details(request, tag_id):
     tag = Tag.objects.get(id=tag_id)
-    recipes = tag.recipe_set.all()
-    return render(request, 'tags/detail.html', {'recipes': recipes, 'tag': tag})
+    recipes = tag.recipe_set.filter(user_id=request.user)
+    return render(request, 'recipes/tags_detail.html', {'recipes': recipes, 'tag': tag})
 
 
 class RecipeCreate(LoginRequiredMixin, CreateView):
