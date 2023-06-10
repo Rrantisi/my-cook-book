@@ -1,12 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const searchForm = document.getElementById('search-recipe');
     const userInput = document.getElementById('user-search');
+    const foundRecipes = document.getElementById("found-recipes");
     let query = ''
-
-    input.addEventListener('input', () => {      
-        resultDiv.innerHTML = '';
-        errorDiv.innerHTML = '';
-    })
 
     searchForm.addEventListener('submit', function(e){
         e.preventDefault();
