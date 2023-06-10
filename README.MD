@@ -23,19 +23,21 @@
 
 ## About the Project
 
-Welcome to MyCookbook, the ultimate recipe management app that helps you organize and explore your culinary adventures! Whether you're a seasoned chef or a kitchen novice, this app is designed to enhance your cooking experience and make it easier than ever to create delicious meals.
+Welcome to MyCookBook, the ultimate recipe management app that helps you organize and explore your culinary adventures! Whether you're a seasoned chef or a kitchen novice, this app is designed to enhance your cooking experience and make it easier than ever to create delicious meals.
 
 [Trello Board](https://trello.com/b/W8fliAmg/recipe-app)
 
 ## Getting Started
 
 - Start using [MyCookBook](https://mycookbook-app.herokuapp.com/) by clicking the link and signing up.
-- Add your favorite recipes by navigating to the 'Add Recipe' page and filling out the details
-- Don't forget to use the 'Upload Image' to upload photos of your recipes!
-- Find new recipes by navigating to the 'New Recipes' page and using the search bar to find any recipe that you want
-- Search recipes from your saved recipes for easier access using the search bar in the 'Search' Page
-- Access all your saved recipes by clicking the 'All Recipes' link in the navbar
-- Add new tags and associate them to your recipes. 
+- To include your favorite recipes, simply navigate to the 'Add Recipe' page and complete the required details. This will enable you to add your desired recipes seamlessly.
+- Remember to utilize the 'Upload Image' feature to easily upload and showcase photos of your recipes!
+- Discover fresh recipes by heading over to the 'New Recipes' page and utilizing the search bar to locate any specific recipe you desire.
+- Enhance your access to saved recipes by utilizing the search bar on the 'Search' page. Easily search through your collection of recipes for a more convenient experience.
+- Expand your recipe organization by incorporating new tags and effortlessly associating them with your recipes. 
+- By utilizing the 'All Tags' link, you can easily navigate to the All Tags page. From there, you can choose any tag to explore the recipes associated with it.
+- You can easily access these recipes by simply clicking on them from there!
+- Conveniently access all of your saved recipes by simply clicking on the 'All Recipes' link located in the navigation bar.
 
 ![MyCookBook](main_app/static/images/1.png)
 
@@ -74,18 +76,17 @@ Image by [KamranAydinov](https://www.freepik.com/kamranaydinov) from [Freepik](h
 
 ## Icebox Items
 
-1. Filter recipes by tag name
-2. Add ingredient conversion and substitution
-3. Add cooking timer
-4. Meal planning
-5. Delete/update ingredients and instructions
-6. Add favorites
+1. Add ingredient conversion and substitution
+2. Add cooking timer
+3. Meal planning
+4. Delete/update ingredients and instructions
+5. Add favorites
 
 ## Contribution Guidelines
 
-We welcome contributions from the community to help make MyCookbook even better. If you encounter any issues, have ideas for new features, or want to contribute code, please feel free to submit a pull request or open an issue in this repository.
+You are invited to contribute to the improvement of MyCookBook, making it even better. If you encounter any issues, have ideas for new features, or want to contribute code, please feel free to submit a pull request or open an issue in this repository.
 
-Let's embark on a delightful culinary adventure with MyCookbook. Happy cooking!!
+Let's embark on a delightful culinary adventure with MyCookBook. Happy cooking!!
 
 ## Contact
 
