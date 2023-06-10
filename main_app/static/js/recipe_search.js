@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const userInput = document.getElementById('user-search');
     let query = ''
 
+    input.addEventListener('input', () => {      
+        resultDiv.innerHTML = '';
+        errorDiv.innerHTML = '';
+    })
+
     searchForm.addEventListener('submit', function(e){
         e.preventDefault();
         query = userInput.value;
@@ -19,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 data.forEach(item => {
-                    const foundRecipes = document.getElementById('found-recipes');                    
                     foundRecipes.innerHTML += `
                     <a href="/api/recipes/${item.name}">
                         <h3>${item.name}</h3>
