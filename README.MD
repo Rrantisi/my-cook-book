@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-    <img src="mycookbook/main_app/static/images/logo.png" alt="MyCookBook" width="80" height="80">
+    <img src="main_app/static/images/logo.png" alt="MyCookBook" width="80" height="80">
   <h1 align="center">MyCookBook</h1>
 </div>
 
@@ -58,7 +58,7 @@ Welcome to MyCookbook, the ultimate recipe management app that helps you organiz
 
 ![Image by KamranAydinov from Freepik](https://www.freepik.com/free-photo/top-view-fresh-ingredients-oil-garlic-lemon-slices-other-products_11799562.htm#page=5&query=free%20recipe%20background%20images&position=22&from_view=search&track=ais)
 
-Image by [KamranAydinov](https://www.freepik.com/kamranaydinov) from [Freepik](https://www.freepik.com/)
+Image by [KamranAydinov](main_app/static/images/bg.jpg) from [Freepik](https://www.freepik.com/)
 
 ## Built With
 
