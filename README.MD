@@ -36,7 +36,7 @@ Welcome to MyCookbook, the ultimate recipe management app that helps you organiz
 - Find new recipes by navigating to the 'New Recipes' page and using the search bar to find any recipe that you want
 - Search recipes from your saved recipes for easier access using the search bar in the 'Search' Page
 - Access all your saved recipes by clicking the 'All Recipes' link in the navbar
-- Add new tags and associate them to your recipes 
+- Add new tags and associate them to your recipes. 
 
 ![MyCookBook](mycookbook/main_app/static/images/1.png)
 
@@ -86,7 +86,7 @@ Image by [KamranAydinov](https://www.freepik.com/kamranaydinov) from [Freepik](h
 
 We welcome contributions from the community to help make MyCookbook even better. If you encounter any issues, have ideas for new features, or want to contribute code, please feel free to submit a pull request or open an issue in this repository.
 
-Let's embark on a delightful culinary adventure with MyCookbook. Happy cooking!
+Let's embark on a delightful culinary adventure with MyCookbook. Happy cooking!!
 
 ## Contact
 
