@@ -13,8 +13,8 @@
         </a>
     </div>
     <div class="d-flex justify-content-end gap-2">
-        <a class="btn btn-outline-secondary text-light" href="{% url 'tag_update' tag.id %}">Edit</a>
-        <a class="btn btn-outline-secondary text-light" href="{% url 'tag_delete' tag.id %}">Delete</a>
+        <a class="btn btn-dark text-light" href="{% url 'tag_update' tag.id %}">Edit</a>
+        <a class="btn btn-dark text-light" href="{% url 'tag_delete' tag.id %}">Delete</a>
     </div>        
     <h3 class="m-5 text-warning">Available Recipes: </h3>
     {% if recipes %}
