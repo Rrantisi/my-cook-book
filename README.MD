@@ -49,9 +49,11 @@ Welcome to MyCookBook, the ultimate recipe management app that helps you organiz
 
 ![MyCookBook](main_app/static/images/5.png)
 
-![MyCookBook](main_app/static/images/6.png)
+![MyCookBook](main_app/static/images/10.png)
 
-![MyCookBook](main_app/static/images/7.png)
+![MyCookBook](main_app/static/images/11.png)
+
+![MyCookBook](main_app/static/images/12.png)
 
 ![MyCookBook](main_app/static/images/8.png)
 
