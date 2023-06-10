@@ -38,23 +38,23 @@ Welcome to MyCookbook, the ultimate recipe management app that helps you organiz
 - Access all your saved recipes by clicking the 'All Recipes' link in the navbar
 - Add new tags and associate them to your recipes. 
 
-![MyCookBook](mycookbook/main_app/static/images/1.png)
+![MyCookBook](main_app/static/images/1.png)
 
-![MyCookBook](mycookbook/main_app/static/images/2.png)
+![MyCookBook](main_app/static/images/2.png)
 
-![MyCookBook](mycookbook/main_app/static/images/3.png)
+![MyCookBook](main_app/static/images/3.png)
 
-![MyCookBook](mycookbook/main_app/static/images/4.png)
+![MyCookBook](main_app/static/images/4.png)
 
-![MyCookBook](mycookbook/main_app/static/images/5.png)
+![MyCookBook](main_app/static/images/5.png)
 
-![MyCookBook](mycookbook/main_app/static/images/6.png)
+![MyCookBook](main_app/static/images/6.png)
 
-![MyCookBook](mycookbook/main_app/static/images/7.png)
+![MyCookBook](main_app/static/images/7.png)
 
-![MyCookBook](mycookbook/main_app/static/images/8.png)
+![MyCookBook](main_app/static/images/8.png)
 
-![MyCookBook](mycookbook/main_app/static/images/9.png)
+![MyCookBook](main_app/static/images/9.png)
 
 ![Image by KamranAydinov from Freepik](https://www.freepik.com/free-photo/top-view-fresh-ingredients-oil-garlic-lemon-slices-other-products_11799562.htm#page=5&query=free%20recipe%20background%20images&position=22&from_view=search&track=ais)
 

@@ -179,6 +179,12 @@ def add_photo(request, recipe_id):
             print(e)
     return redirect('detail', recipe_id=recipe_id)
 
+@login_required
+def tag_details(request, tag_id):
+    tag = Tag.objects.get(id=tag_id)
+    recipes = tag.recipe_set.all()
+    return render(request, 'tags/detail.html', {'recipes': recipes, 'tag': tag})
+
 
 class RecipeCreate(LoginRequiredMixin, CreateView):
     model = Recipe
@@ -196,9 +202,6 @@ class RecipeDelete(LoginRequiredMixin, DeleteView):
     success_url = '/recipes/'
 
 class TagList(LoginRequiredMixin, ListView):
-    model = Tag
-
-class TagDetail(LoginRequiredMixin, DetailView):
     model = Tag
 
 class TagCreate(LoginRequiredMixin, CreateView):
