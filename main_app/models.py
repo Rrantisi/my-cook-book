@@ -9,7 +9,7 @@ class Tag(models.Model):
         return self.name    
     
     def get_absolute_url(self):
-        return reverse('tag_details', kwargs={'pk': self.id})
+        return reverse('tag_details', kwargs={'tag_id': self.id})
 
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
