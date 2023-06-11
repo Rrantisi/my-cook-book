@@ -34,30 +34,33 @@ Welcome to MyCookBook, the ultimate recipe management app that helps you organiz
 - Remember to utilize the 'Upload Image' feature to easily upload and showcase photos of your recipes!
 - Discover fresh recipes by heading over to the 'New Recipes' page and utilizing the search bar to locate any specific recipe you desire.
 - Enhance your access to saved recipes by utilizing the search bar on the 'Search' page. Easily search through your collection of recipes for a more convenient experience.
-- Expand your recipe organization by incorporating new tags and effortlessly associating them with your recipes. 
 - By utilizing the 'All Tags' link, you can easily navigate to the All Tags page. From there, you can choose any tag to explore the recipes associated with it.
 - You can easily access these recipes by simply clicking on them from there!
+- Expand your recipe organization by incorporating new tags and effortlessly associating them with your recipes. 
 - Conveniently access all of your saved recipes by simply clicking on the 'All Recipes' link located in the navigation bar.
+- Utilize the 'Convert' link for effortless conversion of ingredient amounts between different units.
 
 ![MyCookBook](main_app/static/images/1.png)
 
-![MyCookBook](main_app/static/images/2.png)
-
-![MyCookBook](main_app/static/images/3.png)
-
-![MyCookBook](main_app/static/images/4.png)
-
-![MyCookBook](main_app/static/images/5.png)
-
-![MyCookBook](main_app/static/images/10.png)
-
-![MyCookBook](main_app/static/images/11.png)
-
-![MyCookBook](main_app/static/images/12.png)
+![MyCookBook](main_app/static/images/22.png)
 
 ![MyCookBook](main_app/static/images/8.png)
 
 ![MyCookBook](main_app/static/images/9.png)
+
+![MyCookBook](main_app/static/images/33.png)
+
+![MyCookBook](main_app/static/images/44.png)
+
+![MyCookBook](main_app/static/images/55.png)
+
+![MyCookBook](main_app/static/images/66.png)
+
+![MyCookBook](main_app/static/images/77.png)
+
+![MyCookBook](main_app/static/images/88.png)
+
+![MyCookBook](main_app/static/images/99.png)
 
 Background Image by [KamranAydinov](https://www.freepik.com/kamranaydinov) from [Freepik](https://www.freepik.com/)
 
@@ -73,10 +76,11 @@ Background Image by [KamranAydinov](https://www.freepik.com/kamranaydinov) from 
 - [AWS-S3](https://aws.amazon.com/s3/)
 - [Heroku](https://www.heroku.com/)
 - [The Meal DB API](https://www.themealdb.com/api.php)
+- [Spoonacular API](https://spoonacular.com/food-api/docs)
 
 ## Icebox Items
 
-1. Add ingredient conversion and substitution
+1. Add ingredient substitution
 2. Add cooking timer
 3. Meal planning
 4. Delete/update ingredients and instructions
