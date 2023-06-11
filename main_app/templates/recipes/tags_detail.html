@@ -16,7 +16,7 @@
         <a class="btn btn-dark text-light" href="{% url 'tag_update' tag.id %}">Edit</a>
         <a class="btn btn-dark text-light" href="{% url 'tag_delete' tag.id %}">Delete</a>
     </div>        
-    <h3 class="m-5 text-warning">Available Recipes: </h3>
+    <h3 class="m-5 mt-0 text-warning">Available Recipes: </h3>
     {% if recipes %}
         {% for recipe in recipes %}
             <h3><a class="text-decoration-none text-white p-5" href="{% url 'detail' recipe.id %}">{{recipe.name}}</a></h3><br>

@@ -5,7 +5,7 @@
     <div class="container border-0 mb-3 mt-4 pt-3 pb-4" style="background-color: #212121d8;">
         <div class="bg-transparent text-white">
             <div class="card-header bg-transparent text-white text-center">
-                <h2 style="text-transform: capitalize;">{{ recipe.name }}</h2><br>{{recipe.region.capitalize}}<br>
+                <h2 style="text-transform: capitalize;">{{ recipe.name }}</h2><br>{{recipe.region}}<br>
                 <br>
                 {% for photo in recipe.photo_set.all %}
                     <img src="{{photo.url}}" class="img-fluid" style="max-height: 60vmin" alt="photo">
@@ -63,7 +63,7 @@
                         </div>
                         <div class="card-content bg-tranparent">
                             {% for ingredient in recipe.ingredient_set.all %}
-                            <ul class=" m-3 p-2" style="list-style: none; font-size: 2vmin;">
+                            <ul class="m-3 p-2" style="list-style: none; font-size: 2vmin;">
                                 <li><h6>{{ingredient.amount.capitalize}} - {{ingredient.name.capitalize}}</h6></li>
                             </ul>
                             {% endfor %}    
@@ -75,7 +75,7 @@
                         </div>
                         <div class="card-content bg-tranparent">
                             {% for instruction in recipe.instruction_set.all %}
-                            <ul class=" m-3 p-2" style="list-style: none; font-size: 2vmin;">
+                            <ul class="m-3 p-2" style="list-style: none; font-size: 2vmin;">
                                 <li><h6>{{instruction.step.capitalize}}</h6></li>
                             </ul>
                             {% endfor %}    
@@ -85,7 +85,7 @@
                 <hr>
                 <div class="row">
                     <div class="card col-md-6 text-white bg-transparent p-3"  style="background-color: #212121d8;">
-                        <h3 class="p-2">Add Ingredient:</h3>
+                        <h3 class="p-2">Add Ingredients:</h3>
                         <form action="{% url 'add_ingredient' recipe.id %}" method="POST" class="m-4">
                             {% csrf_token %}
                             <table>

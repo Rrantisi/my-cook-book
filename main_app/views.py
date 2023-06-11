@@ -1,5 +1,5 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.shortcuts import render, redirect
@@ -42,6 +42,7 @@ def signup(request):
     'error': error_message}
     )
 
+#--- Function to fetch recipes from the meal db api ---#
 @login_required
 def get_recipe_data(request):
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
@@ -101,6 +102,26 @@ def get_recipe_data(request):
             return JsonResponse({'result': result})
 
 @login_required
+def recipes_conversion(request):
+  return render(request, 'conversion.html')
+
+#--- Function to fetch conversion from the spoonacular api ---#
+@login_required
+def get_conversion(request):
+    API_KEY = os.environ['SPOONACULAR_API_KEY']
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    if is_ajax:
+        if request.method == 'GET':
+            a = request.GET.get('a')
+            b = request.GET.get('b')
+            c = request.GET.get('c')
+            d = request.GET.get('d')
+            url = f'https://api.spoonacular.com/recipes/convert?ingredientName={a}&sourceAmount={b}&sourceUnit={c}&targetUnit={d}&apiKey={API_KEY}'
+            response = requests.get(url)
+            data = response.json()
+    return JsonResponse({'data': data})
+
+@login_required
 def get_recipe_details(request, recipe_name):
     recipe = Recipe.objects.get(name=recipe_name, user = request.user)
     return render(request, 'recipes/detail.html', {'recipe': recipe})
@@ -110,12 +131,13 @@ def recipes_index(request):
     recipes = Recipe.objects.filter(user = request.user)
     return render(request, 'recipes/index.html', {'recipes': recipes})
 
+#--- Function to fetch user saved recipes from db ---#
 @login_required
 def find_matching_recipes(request):
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     if is_ajax:
         if request.method == 'GET':
-            query = request.GET.get('query')
+            query = request.GET.get('query', '')
             recipes_found = Recipe.objects.filter(name__icontains=query, user = request.user)[:5]
     return JsonResponse(list(recipes_found.values()), safe=False)
 

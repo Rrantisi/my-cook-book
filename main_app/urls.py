@@ -6,6 +6,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('find/', views.find, name='find'),
     path('recipes/', views.recipes_index, name='index'),
+    path('recipes/conversion/', views.recipes_conversion, name='recipes_conversion'),
     path('recipes/<int:recipe_id>', views.recipes_detail, name='detail'),
     path('recipes/<int:pk>/update/', views.RecipeUpdate.as_view(), name='recipe_update'), 
     path('recipes/<int:pk>/delete/', views.RecipeDelete.as_view(), name='recipe_delete'), 
@@ -24,4 +25,5 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     path('api/recipes/', views.get_recipe_data, name='get_recipe_data'),
     path('api/recipes/<str:recipe_name>/', views.get_recipe_details, name='get_recipe_details'),
+    path('api/conversion/', views.get_conversion, name='recipe_get_conversion'),
 ]
