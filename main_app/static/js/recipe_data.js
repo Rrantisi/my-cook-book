@@ -1,42 +1,48 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const resultDiv = document.getElementById('result');                    
-    const errorDiv = document.getElementById('error');                    
-    const form = document.getElementById('search-form');
-    const input = document.getElementById('search-input');
-    let query = ''
 
-    input.addEventListener('input', () => {      
-        resultDiv.innerHTML = '';
-        errorDiv.innerHTML = '';
-    })
+    if(document.querySelector('#search-form')){
+        /*----- state variables -----*/
+        let query = ''
 
-    form.addEventListener('submit', function(e){
-        e.preventDefault();
-        query = input.value;
-        fetchData()
-    })
+        /*----- cached elements -----*/
+        const resultDiv = document.getElementById('result');                    
+        const errorDiv = document.getElementById('error');                    
+        const form = document.getElementById('search-form');
+        const input = document.getElementById('search-input');
 
-    function fetchData() {
-        fetch('/api/recipes/?s=' + query, {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-            }
+        /*----- event listeners -----*/
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            query = input.value;
+            fetchData()
+            resultDiv.innerHTML = '';
+            errorDiv.innerHTML = '';
         })
-            .then(response => response.json())
-            .then(data => {
-                data.result.forEach(item => {
-                    resultDiv.innerHTML += `
-                    <a href="/api/recipes/${item.strMeal}">
-                        <h3>${item.strMeal}</h3>
-                    </a><br>
-                    `
-                })
+
+        /*----- function to fetch data from The meal db api using search input -----*/
+        function fetchData() {
+            fetch('/api/recipes/?s=' + query, {
+                method: "GET",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                }
             })
-            .catch(error => {
-                console.log(error)
-                errorDiv.innerHTML += `
-                    <h4>Sorry .. No recipes matched your search. Try something else</h4>`
-            });
+                .then(response => response.json())
+                .then(data => {
+                    data.result.forEach(item => {
+                        resultDiv.innerHTML += `
+                        <a href="/api/recipes/${item.strMeal}">
+                            <h3>${item.strMeal}</h3>
+                        </a><br>
+                        `
+                    })
+                })
+                .catch(error => {
+                    console.log(error)
+                    errorDiv.innerHTML += `
+                        <h4>Sorry .. No recipes matched your search. Try something else</h4>
+                        `
+                });
+        }
     }
 })    
