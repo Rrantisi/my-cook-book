@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    if(document.querySelector('#conversion-form')){
+    if(document.querySelector('#conversion-form') || document.querySelector('#substitution-form')){
 
         /*----- cached elements -----*/
         const conversionResult = document.getElementById('conversion-message');  
@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const sourceUnit = document.getElementById('source-unit');
         const targetUnit = document.getElementById('target-unit');
         const conversionForm = document.getElementById('conversion-form');
+        const substitutionResult = document.getElementById('substitution-message');  
+        const sourceName = document.getElementById('source-name');
+        const substitutionForm = document.getElementById('substitution-form');
         
         /*----- event listeners -----*/
         conversionForm.addEventListener('submit', function(e){
@@ -18,11 +21,18 @@ document.addEventListener('DOMContentLoaded', function() {
             amountSrc = sourceAmount.value
             unitSrc = sourceUnit.value
             unitTarget = targetUnit.value
-            fetchRecipes();
+            fetchConversion();
+        })
+
+        substitutionForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            substitutionResult.innerHTML = ''
+            nameSrc = sourceName.value
+            fetchSubstitution();
         })
 
         /*----- fetch function for fetching conversion data from spoonacular api -----*/
-        const fetchRecipes = async () => {
+        const fetchConversion = async () => {
             try {
                 const response = await fetch(`/api/conversion/?a=${nameIngredient}&b=${amountSrc}&c=${unitSrc}&d=${unitTarget}` , {
                     method: "GET",
@@ -38,5 +48,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log(error)
             }
         }
+
+        const fetchSubstitution = async () => {
+            try {
+                const response = await fetch(`/api/substitution/?nameSrc=${nameSrc}` , {
+                    method: "GET",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                    }    
+                });
+                const recipeData = await response.json();
+                const result = recipeData.data.substitutes
+                for(let i = 0; i < result.length; i++){
+                    substitutionResult.innerHTML += `
+                    <p>${result[i]}</p>
+                `
+                }
+            } catch(error){
+                console.log(error)
+            }
+        }
+
     }
 })    

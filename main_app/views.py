@@ -45,6 +45,7 @@ def signup(request):
 #--- Function to fetch recipes from the meal db api ---#
 @login_required
 def get_recipe_data(request):
+    # check if a request is an AJAX request by inspecting the X-Requested-With header in the request.
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     if is_ajax:
         if request.method == 'GET':
@@ -109,6 +110,7 @@ def recipes_conversion(request):
 @login_required
 def get_conversion(request):
     API_KEY = os.environ['SPOONACULAR_API_KEY']
+    # check if a request is an AJAX request by inspecting the X-Requested-With header in the request.
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     if is_ajax:
         if request.method == 'GET':
@@ -119,7 +121,23 @@ def get_conversion(request):
             url = f'https://api.spoonacular.com/recipes/convert?ingredientName={a}&sourceAmount={b}&sourceUnit={c}&targetUnit={d}&apiKey={API_KEY}'
             response = requests.get(url)
             data = response.json()
+    # JsonResponse is a class provided by the django.http module that allows you to return JSON-encoded responses from a view. It is a specialized response class specifically designed for returning JSON data.
     return JsonResponse({'data': data})
+
+@login_required
+def get_substition(request):
+    API_KEY = os.environ['SPOONACULAR_API_KEY']
+    # check if a request is an AJAX request by inspecting the X-Requested-With header in the request.
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    if is_ajax:
+        if request.method == 'GET':
+            nameSrc = request.GET.get('nameSrc')
+            url = f'https://api.spoonacular.com/food/ingredients/substitutes?ingredientName={nameSrc}&apiKey={API_KEY}'
+            response = requests.get(url)
+            data = response.json()
+    # JsonResponse is a class provided by the django.http module that allows you to return JSON-encoded responses from a view. It is a specialized response class specifically designed for returning JSON data.
+    return JsonResponse({'data': data})
+
 
 @login_required
 def get_recipe_details(request, recipe_name):
@@ -134,11 +152,14 @@ def recipes_index(request):
 #--- Function to fetch user saved recipes from db ---#
 @login_required
 def find_matching_recipes(request):
+    # check if a request is an AJAX request by inspecting the X-Requested-With header in the request.
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
     if is_ajax:
         if request.method == 'GET':
             query = request.GET.get('query', '')
+            # Finds recipes using name__icontains field lookup to perform case-insensitive match
             recipes_found = Recipe.objects.filter(name__icontains=query, user = request.user)[:5]
+    # return a JSON response containing a list of values extracted from the recipes_found 
     return JsonResponse(list(recipes_found.values()), safe=False)
 
 @login_required

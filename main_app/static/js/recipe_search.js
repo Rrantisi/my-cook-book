@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const data = await response.json()
                 data.forEach(item => {
                     foundRecipes.innerHTML += `
-                    <a href="/api/recipes/${item.name}">
+                    <a href="/recipes/${item.id}">
                         <h3>${item.name}</h3>
                     </a><br>
                     `
