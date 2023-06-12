@@ -19,8 +19,8 @@
                     <form action="{% url 'add_photo' recipe.id %}" enctype="multipart/form-data" method="POST" class="d-flex justify-content-center align-items-center text-align-center">
                         {% csrf_token %}
                         <input class="d-flex" type="file" name="photo-file">
-                        <br><br>
-                        <button type="submit" class="btn btn-outline-secondary text-light d-flex">Upload Photo</button>
+                        <br>
+                        <button type="submit" class="btn btn-outline-secondary text-light">Upload Photo</button>
                     </form><br>  
                 </div>
             </div>
