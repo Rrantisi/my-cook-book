@@ -80,11 +80,10 @@ Background Image by [KamranAydinov](https://www.freepik.com/kamranaydinov) from 
 
 ## Icebox Items
 
-1. Add ingredient substitution
-2. Add cooking timer
-3. Meal planning
-4. Delete/update ingredients and instructions
-5. Add favorites
+1. Add cooking timer
+2. Meal planning
+3. Delete/update ingredients and instructions
+4. Add favorites
 
 ## Contribution Guidelines
 
