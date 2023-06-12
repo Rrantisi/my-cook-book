@@ -26,4 +26,5 @@ urlpatterns = [
     path('api/recipes/', views.get_recipe_data, name='get_recipe_data'),
     path('api/recipes/<str:recipe_name>/', views.get_recipe_details, name='get_recipe_details'),
     path('api/conversion/', views.get_conversion, name='recipe_get_conversion'),
+    path('api/substitution/', views.get_substition, name='recipe_get_substitution'),
 ]

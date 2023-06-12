@@ -11,10 +11,10 @@
 {% if object_list %}
     {% for tag in object_list %}
     <div class="card bg-transparent p-1 m-3 border-secondary border-1 shadow-lg shadow-sm">
-        <a class="text-white text-decoration-none p-1" href="{% url 'tag_details' tag.id %}">
-            <ul style="list-style: none; font-size: 3vmin;">
-                <li>{{tag.name.capitalize}}</li>
-            </ul>
+        <a class="text-white text-decoration-none" href="{% url 'tag_details' tag.id %}">
+            {% comment %} <ul style="list-style: none; font-size: 3vmin;"> {% endcomment %}
+                <h4 class="p-4 pb-0">{{tag.name.capitalize}}</h4><br>
+            {% comment %} </ul> {% endcomment %}
         </a>
     </div>
     {% endfor %}
