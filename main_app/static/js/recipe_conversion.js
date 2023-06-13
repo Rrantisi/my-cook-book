@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `
             } catch(error){
                 console.log(error)
+                document.getElementById('conversion-error-message').innerHTML = 'Something Went Wrong..'
             }
         }
 
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } catch(error){
                 console.log(error)
+                document.getElementById('substitution-error-message').innerHTML = 'No substitutes found.'
             }
         }
 
