@@ -42,25 +42,23 @@ Welcome to MyCookBook, the ultimate recipe management app that helps you organiz
 
 ![MyCookBook](main_app/static/images/1.png)
 
-![MyCookBook](main_app/static/images/22.png)
+![MyCookBook](main_app/static/images/222.png)
+
+![MyCookBook](main_app/static/images/333.png)
+
+![MyCookBook](main_app/static/images/444.png)
 
 ![MyCookBook](main_app/static/images/8.png)
 
 ![MyCookBook](main_app/static/images/9.png)
 
-![MyCookBook](main_app/static/images/33.png)
+![MyCookBook](main_app/static/images/555.png)
 
-![MyCookBook](main_app/static/images/44.png)
+![MyCookBook](main_app/static/images/666.png)
 
-![MyCookBook](main_app/static/images/55.png)
+![MyCookBook](main_app/static/images/777.png)
 
-![MyCookBook](main_app/static/images/66.png)
-
-![MyCookBook](main_app/static/images/77.png)
-
-![MyCookBook](main_app/static/images/88.png)
-
-![MyCookBook](main_app/static/images/99.png)
+![MyCookBook](main_app/static/images/888.png)
 
 Background Image by [KamranAydinov](https://www.freepik.com/kamranaydinov) from [Freepik](https://www.freepik.com/)
 
